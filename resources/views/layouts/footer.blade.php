@@ -46,6 +46,8 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="{{asset('AdminLTE')}}/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('AdminLTE')}}/dist/js/pages/dashboard.js"></script>
+<!-- bootsrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('AdminLTE')}}/dist/js/demo.js"></script>
 </body>

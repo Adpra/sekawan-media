@@ -2,63 +2,61 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function showLogin()
     {
-        //
+        return view('login.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function authenticate(Request $request): RedirectResponse
     {
-        //
+
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+
+            if (auth()->user()->role != 'admin' && auth()->user()->role != 'manager') {
+                Auth::guard('web')->logout();
+
+                $request->session()->invalidate();
+
+                $request->session()->regenerateToken();
+
+                return redirect()->route('login')->with('failed', 'Mohon maaf akun anda masih dalam proses menunggu verifikasi');
+            }
+
+            $request->session()->regenerate();
+
+            $route = RouteServiceProvider::HOME;
+
+            if (auth()->user()->role == 'admin') {
+                $route = route('cms.admin.index');
+            }
+            if (auth()->user()->role == 'manager') {
+                $route = route('cms.manager.index');
+            }
+
+            return redirect()->intended($route);
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function logout()
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        Auth::logout();
+        return redirect()->route('login');
     }
 }

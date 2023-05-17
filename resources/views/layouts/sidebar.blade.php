@@ -39,18 +39,22 @@
                 <p>Home</p>
               </a>
             </li>
+            @if(auth()->user()->role == 'admin')
             <li class="nav-item">
               <a href="{{route('cms.admin.index')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Admin</p>
               </a>
             </li>
+            @endif
+            @if(auth()->user()->role == 'manager')
             <li class="nav-item">
               <a href="{{route('cms.manager.index')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Manager</p>
               </a>
             </li>
+            @endif
           </ul>
         </li>
         <li class="nav-item has-treeview">
