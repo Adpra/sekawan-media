@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+// Route::get('/', function () {
+//     // return redirect()->route('login');
+//     return redirect()->route('login-option');
+// });
+
+
+Route::prefix('cms')
+    ->name('cms.')
+    // ->middleware('auth')
+    ->group(function () {
+
+        Route::resource('admin', AdminController::class);
+
+        Route::resource('manager', ManagerController::class);
+    });
