@@ -1,45 +1,19 @@
-# Direktori dan file yang diabaikan oleh Git
-
+/.phpunit.cache
 /node_modules
-/public/storage
-/vendor
-/.idea
-
-# File konfigurasi lokal
-
-.env
-
-# File cache Laravel
-
-# /bootstrap/cache
-/storage/*.key
+/public/build
 /public/hot
-/storage/logs
-/storage/framework/cache
-/storage/framework/sessions
-/storage/framework/testing
-/storage/framework/views
-
-# File editor/IDE
-
-*.sublime-project
-*.sublime-workspace
-*.idea/
-*.vscode/
-
-# File migrasi database
-
-/database/*.sqlite
-/database/migrations/*.php
-/database/seeds/*.php
-
-# File testing
-
-/phpunit.xml
-
-# File log error
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-error.log
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
