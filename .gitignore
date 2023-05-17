@@ -1,0 +1,45 @@
+# Direktori dan file yang diabaikan oleh Git
+
+/node_modules
+/public/storage
+/vendor
+/.idea
+
+# File konfigurasi lokal
+
+.env
+
+# File cache Laravel
+
+/bootstrap/cache
+/storage/*.key
+/public/hot
+/storage/logs
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/testing
+/storage/framework/views
+
+# File editor/IDE
+
+*.sublime-project
+*.sublime-workspace
+*.idea/
+*.vscode/
+
+# File migrasi database
+
+/database/*.sqlite
+/database/migrations/*.php
+/database/seeds/*.php
+
+# File testing
+
+/phpunit.xml
+
+# File log error
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+error.log
