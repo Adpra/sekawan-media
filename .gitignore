@@ -11,7 +11,7 @@
 
 # File cache Laravel
 
-/bootstrap/cache
+# /bootstrap/cache
 /storage/*.key
 /public/hot
 /storage/logs
