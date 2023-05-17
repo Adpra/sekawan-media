@@ -35,8 +35,6 @@ Route::prefix('cms')
     ->name('cms.')
     ->middleware('auth')
     ->group(function () {
-
-        Route::resource('admin', AdminController::class);
-
-        Route::resource('manager', ManagerController::class);
+        Route::resource('manager', ManagerController::class)->middleware('access.manager');
+        Route::resource('admin', AdminController::class)->middleware('access.admin');
     });

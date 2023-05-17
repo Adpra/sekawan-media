@@ -11,9 +11,7 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->role == 'manager') {
-            return view('manager/index');
-        }
+        return view('manager/index');
     }
 
     /**

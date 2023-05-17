@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        if (auth()->user()->role == 'admin') {
-            return view('admin/index');
-        }
+        return view('admin/index');
     }
 
     /**
