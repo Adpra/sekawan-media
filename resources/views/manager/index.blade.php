@@ -42,6 +42,7 @@
           <th scope="col">Vehicle</th>
           <th scope="col">Driver</th>
           <th scope="col">Approved By</th>
+          <th scope="col">Request From</th>
           <th scope="col">Start Date</th>
           <th scope="col">End Date</th>
           <th scope="col">Status</th>
@@ -55,6 +56,7 @@
           <td>{{$booking->vehicle->type ?? '-'}}</td>
           <td>{{$booking->driver->name ?? '-'}}</td>
           <td>{{$booking->approvedBy->name ?? '-'}}</td>
+          <td>{{$booking->branch->name ?? '-'}}</td>
           <td>{{$booking->start_date ?? '-'}}</td>
           <td>{{$booking->end_date ?? '-'}}</td>
           <td>{{$booking->status ?? '-'}}</td>

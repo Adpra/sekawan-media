@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('vehicle_id')->index();
             $table->bigInteger('user_id')->index();
             $table->bigInteger('approved_by')->index();
+            $table->bigInteger('branch_id')->index();
             $table->string('status');
             $table->date('start_date');
             $table->date('end_date');

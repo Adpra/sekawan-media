@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookingRequest;
 use App\Models\Booking;
+use App\Models\Branch;
 use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\VehicleUsage;
@@ -18,15 +19,18 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        $bookings = Booking::query()->paginate();
+        $bookings = Booking::query()
+            ->orderBy('id', 'DESC')
+            ->paginate();
 
         if ($request->filter) {
             $bookings = Booking::query()->where('status', $request->filter)
+                ->orderBy('id', 'DESC')
                 ->paginate();
         }
 
         $statuses = [
-            'In Process',
+            'In Proccess',
             'Approved',
             'Canceled'
         ];
@@ -50,7 +54,9 @@ class AdminController extends Controller
 
         $managers = User::query()->where('role', 'manager')->get();
 
-        return view('admin.create', compact('vehicles', 'drivers', 'managers'));
+        $branchs = Branch::query()->get();
+
+        return view('admin.create', compact('vehicles', 'drivers', 'managers', 'branchs'));
     }
 
     /**
@@ -63,6 +69,7 @@ class AdminController extends Controller
         Booking::create([
             "vehicle_id" => $request->vehicle,
             "user_id" => $request->user_id,
+            "branch_id" => $request->branch_id,
             "approved_by" => $request->approved_by,
             "start_date" => $request->start_date,
             "end_date" => $request->end_date,
@@ -92,7 +99,9 @@ class AdminController extends Controller
 
         $managers = User::query()->where('role', 'manager')->get();
 
-        return view('admin.edit', compact('admin', 'vehicles', 'drivers', 'managers'));
+        $branchs = Branch::query()->get();
+
+        return view('admin.edit', compact('admin', 'vehicles', 'drivers', 'managers', 'branchs'));
     }
 
     /**
@@ -105,6 +114,7 @@ class AdminController extends Controller
         $admin->update([
             "vehicle_id" => $request->vehicle,
             "user_id" => $request->user_id,
+            "branch_id" => $request->branch_id,
             "approved_by" => $request->approved_by,
             "start_date" => $request->start_date,
             "end_date" => $request->end_date,

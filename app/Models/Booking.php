@@ -16,7 +16,8 @@ class Booking extends Model
         'approved_by',
         'start_date',
         'end_date',
-        'status'
+        'status',
+        'branch_id'
     ];
 
     public function vehicle()
@@ -32,5 +33,10 @@ class Booking extends Model
     public function approvedBy()
     {
         return $this->belongsTo(User::class, 'approved_by', 'id');
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id', 'id');
     }
 }

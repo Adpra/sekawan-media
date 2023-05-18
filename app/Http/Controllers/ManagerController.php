@@ -21,11 +21,12 @@ class ManagerController extends Controller
 
         if ($request->filter) {
             $bookings = Booking::query()->where('status', $request->filter)
+                ->orderBy('id', 'DESC')
                 ->paginate();
         }
 
         $statuses = [
-            'In Process',
+            'In Proccess',
             'Approved',
             'Canceled'
         ];

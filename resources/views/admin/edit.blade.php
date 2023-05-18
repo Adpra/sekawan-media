@@ -50,6 +50,19 @@
         </div>
         @endif
     </div>
+    <div class="mb-3" class="{{ $errors->has('branch_id') ? 'has-error' : '' }}">
+      <label for="exampleInputEmail1" class="form-label">Branch Office</label>
+        <select class="form-select" aria-label="Default select example" name="branch_id">
+          @foreach ($branchs as $branch)
+          <option value="{{$branch->id}}" {{$branch->id == $admin->branch_id ? 'selected' : ''}}>{{$branch->name}}</option>
+          @endforeach
+        </select>
+        @if ($errors->has('branch_id'))
+        <div class="help-block" style="color:rgb(208, 46, 46);">
+        {{ $errors->first('branch_id') }}
+        </div>
+        @endif
+  </div>
     <div class="mb-3" class="{{ $errors->has('start_date') ? 'has-error' : '' }}">
       <label for="exampleInputPassword1" class="form-label">Start Date</label>
       <input type="date" class="form-control" id="exampleInputPassword1" name="start_date" value="{{$admin->start_date}}">
