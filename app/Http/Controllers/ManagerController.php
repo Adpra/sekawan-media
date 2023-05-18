@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
+use App\Models\VehicleUsage;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
@@ -9,9 +11,29 @@ class ManagerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('manager/index');
+        $bookings = Booking::query()
+            ->where('approved_by', auth()->user()->id)
+            ->orderBy('id', 'DESC')
+            ->paginate();
+
+
+        if ($request->filter) {
+            $bookings = Booking::query()->where('status', $request->filter)
+                ->paginate();
+        }
+
+        $statuses = [
+            'In Process',
+            'Approved',
+            'Canceled'
+        ];
+
+        $bookings->appends($request->query());
+
+
+        return view('manager/index', compact('bookings', 'statuses'));
     }
 
     /**
@@ -49,9 +71,31 @@ class ManagerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Booking $manager)
     {
-        //
+        // dd($request->approve);
+
+        $status = '';
+
+        if ($request->approve) {
+            $status = $request->approve;
+
+            VehicleUsage::create([
+                'vehicle_id' => $request->vehicle_id,
+                'user_id' => $request->user_id,
+                'usage_date' => now(),
+            ]);
+        }
+
+        if ($request->cancel) {
+            $status = $request->cancel;
+        }
+
+        $manager->update([
+            'status' => $status
+        ]);
+
+        return redirect('cms/manager')->with('message', 'Success');
     }
 
     /**

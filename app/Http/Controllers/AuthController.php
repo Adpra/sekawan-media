@@ -32,7 +32,7 @@ class AuthController extends Controller
 
                 $request->session()->regenerateToken();
 
-                return redirect()->route('login')->with('failed', 'Mohon maaf akun anda masih dalam proses menunggu verifikasi');
+                return redirect('/')->with('failed', 'Mohon maaf akun anda masih dalam proses menunggu verifikasi');
             }
 
             $request->session()->regenerate();
@@ -57,6 +57,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login');
+        return redirect('/login');
     }
 }

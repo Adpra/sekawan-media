@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
+            $table->float('fuel_consumption');
+            $table->date('service_schedule');
             $table->timestamps();
         });
     }

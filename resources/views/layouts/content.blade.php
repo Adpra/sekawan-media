@@ -20,7 +20,7 @@
 
   <!-- Main content -->
   <section class="content">
-    <div class="container-fluid" >
+    <div class="container-fluid p-3" style="background: white; border:20px;">
       @yield('content')
     </div>
     <!-- /.container-fluid -->

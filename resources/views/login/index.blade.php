@@ -8,7 +8,11 @@
   </head>
   <body>
 
-    <form method="POST" action="{{route('login') }}">
+    <div class="text-center m-5">
+      <h1>Login</h1>
+    </div>
+
+    <form method="post" action="{{route('login') }}">
       @csrf
       <div class="container mt-5">
         <div class="row d-flex justify-content-center ">

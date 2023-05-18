@@ -65,6 +65,24 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('123456'),
                 'role' => 'driver',
             ],
+            [
+                'name' => 'setyo',
+                'email' => 'setyo@gmail.com',
+                'password' => Hash::make('123456'),
+                'role' => 'driver',
+            ],
+            [
+                'name' => 'agus',
+                'email' => 'agus@gmail.com',
+                'password' => Hash::make('123456'),
+                'role' => 'driver',
+            ],
+            [
+                'name' => 'tono',
+                'email' => 'tono@gmail.com',
+                'password' => Hash::make('123456'),
+                'role' => 'driver',
+            ],
             // Tambahkan data user lainnya sesuai kebutuhan
         ]);
     }

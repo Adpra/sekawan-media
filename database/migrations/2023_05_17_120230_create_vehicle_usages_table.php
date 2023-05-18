@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('vehicle_id')->index();
             $table->bigInteger('user_id')->index();
-            $table->float('fuel_consumption');
-            $table->date('service_schedule');
             $table->date('usage_date');
             $table->timestamps();
             $table->softDeletes();
