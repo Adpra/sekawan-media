@@ -32,25 +32,29 @@ class AuthController extends Controller
 
                 $request->session()->regenerateToken();
 
-                return redirect('/')->with('failed', 'Mohon maaf akun anda masih dalam proses menunggu verifikasi');
+                return back()->withErrors([
+                    'email' => 'Sorry, the user is not registered yet.',
+                ])->onlyInput('email');
             }
 
             $request->session()->regenerate();
 
-            $route = RouteServiceProvider::HOME;
+            // $route = RouteServiceProvider::HOME;
 
-            if (auth()->user()->role == 'admin') {
-                $route = route('cms.admin.index');
-            }
-            if (auth()->user()->role == 'manager') {
-                $route = route('cms.manager.index');
-            }
+            // if (auth()->user()->role == 'admin') {
+            //     $route = route('cms.admin.index');
+            // }
+            // if (auth()->user()->role == 'manager') {
+            //     $route = route('cms.manager.index');
+            // }
+
+            $route = route('cms.home.index');
 
             return redirect()->intended($route);
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Sorry, the user is not registered yet.',
         ])->onlyInput('email');
     }
 

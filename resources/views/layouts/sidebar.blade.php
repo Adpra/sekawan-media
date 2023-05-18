@@ -1,23 +1,9 @@
  <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
-    <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-         style="opacity: .8">
-    <span class="brand-text font-weight-light">AdminLTE 3</span>
-  </a>
-
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <!-- Sidebar user panel (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
-        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-      </div>
-      <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
-      </div>
-    </div>
+  <div class="brand-link">
+    <span class="brand-text font-weight-light">PT Sekawan Media</span>
+  </div>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
@@ -34,14 +20,14 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/cms/home" class="nav-link active">
+              <a href="/cms/home" class="nav-link {{ request()->routeIs('cms.home.index') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Home</p>
               </a>
             </li>
             @if(auth()->user()->role == 'admin')
             <li class="nav-item">
-              <a href="{{route('cms.admin.index')}}" class="nav-link">
+              <a href="{{route('cms.admin.index')}}" class="nav-link {{ request()->routeIs('cms.admin.index') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Admin</p>
               </a>
@@ -49,7 +35,7 @@
             @endif
             @if(auth()->user()->role == 'manager')
             <li class="nav-item">
-              <a href="{{route('cms.manager.index')}}" class="nav-link">
+              <a href="{{route('cms.manager.index')}}" class="nav-link {{ request()->routeIs('cms.manager.index') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Manager</p>
               </a>
@@ -59,57 +45,14 @@
         </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-copy"></i>
-            <p>
-              Layout Options
-              <i class="fas fa-angle-left right"></i>
-              <span class="badge badge-info right">6</span>
-            </p>
+            <div class="d-flex">
+                <form action="{{route('logout')}}" method="post">
+                @csrf
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <button type="submit" style="background: none; border:none; color:white">Logout</button>
+              </form>
+            </div>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="pages/layout/top-nav.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation + Sidebar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/boxed.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Boxed</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Sidebar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Navbar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-footer.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Footer</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Collapsed Sidebar</p>
-              </a>
-            </li>
-          </ul>
         </li>
       </ul>
     </nav>

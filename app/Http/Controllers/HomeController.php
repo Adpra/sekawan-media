@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\VehicleUsage;
 use Illuminate\Http\Request;
@@ -19,7 +20,11 @@ class HomeController extends Controller
         $totalVehicles = $vehicles->count();
         $unusedVehicles = $totalVehicles - count($usedVehicles);
 
-        return view('home', compact('unusedVehicles', 'usedVehicles'));
+        $drivers = User::query()->where('role', 'driver')->get();
+
+        $vehicles = Vehicle::query()->get();
+
+        return view('home', compact('unusedVehicles', 'usedVehicles', 'drivers', 'vehicles'));
     }
 
     /**
