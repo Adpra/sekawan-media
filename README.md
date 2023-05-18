@@ -12,13 +12,13 @@
    
 2. Install the project dependencies using Composer:
     
-   composer install
+      composer install
 
 3. Run the database migrations:
 
-  php artisan migrate
+      php artisan migrate
 
 4. Seed the database with initial data:
 
-  php artisan db:seed
+      php artisan db:seed
 
